@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 
 LOGIN_URL = '/accounts/login/'
+ACCOUNT_LOGOUT_REDIRECT_URL = '/accounts/login/'
 
 SITE_ID = 1
 
