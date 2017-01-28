@@ -3,8 +3,11 @@ import os
 import sys
 
 if __name__ == "__main__":
-
+    PTH = os.path.dirname(os.path.realpath(__file__))
+    sys.path.append(os.path.join(PTH, 'snps_proj'))
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "snps_proj.settings")
+
+
     try:
         from django.core.management import execute_from_command_line
     except ImportError:

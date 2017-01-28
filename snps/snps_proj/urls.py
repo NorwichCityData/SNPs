@@ -19,5 +19,6 @@ import apps.snps.urls as snps_urls
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^snps/', include(snps_urls))
+    url(r'^snps/', include(snps_urls)),
+    url(r'^accounts/', include('allauth.urls')),
 ]
