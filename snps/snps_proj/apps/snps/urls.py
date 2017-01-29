@@ -21,5 +21,6 @@ urlpatterns = [
     url(r'^$', views.index_view),
     url(r'^upload', views.upload_view),
     url(r'^batch', views.batch_view),
-    url(r'^snps', views.snps_view)
+    url(r'^snps', views.snps_view),
+    url(r'^login', views.login, name='account_login')
 ]

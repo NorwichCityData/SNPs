@@ -1,0 +1,19 @@
+{% extends 'template_base.html' %}
+
+
+{% block titleblock %}
+    View Batches
+{% endblock %}
+
+{% block js_bottom_block %}
+    <script>
+        $(document).ready(function () {
+            $('.active').removeClass('active')
+            $('#batch_link').addClass('active')
+        })
+    </script>
+{% endblock %}
+
+{% block content %}
+    BATCHES CONENT
+{% endblock %}

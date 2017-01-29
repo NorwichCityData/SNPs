@@ -1,0 +1,22 @@
+{% extends 'template_base.html' %}
+
+{% block titleblock %}
+
+    DNAfit Frontpage
+{% endblock %}
+
+
+{% block js_bottom_block %}
+    <script>
+        $(document).ready(function () {
+            $('.active').removeClass('active')
+            $('#index_link').addClass('active')
+        })
+    </script>
+{% endblock %}
+
+
+
+{% block content %}
+    INDEX CONENT
+{% endblock %}

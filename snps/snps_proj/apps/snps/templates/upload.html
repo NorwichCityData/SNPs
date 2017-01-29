@@ -1,0 +1,22 @@
+{% extends 'template_base.html' %}
+
+
+{% block titleblock %}
+
+    File Upload
+{% endblock %}
+
+
+{% block js_bottom_block %}
+    <script>
+        $(document).ready(function () {
+            $('.active').removeClass('active')
+            $('#upload_link').addClass('active')
+        })
+    </script>
+{% endblock %}
+
+
+{% block content %}
+    UPLOAD CONTENT
+{% endblock %}
