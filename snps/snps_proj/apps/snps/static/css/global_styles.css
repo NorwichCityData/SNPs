@@ -1,4 +1,8 @@
-.wrapper{
+body {
+    padding-top: 70px;
+}
+
+.wrapper {
     width: 800px;
     margin: 0 auto;
 }
