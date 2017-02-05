@@ -18,9 +18,11 @@ from django.conf.urls import url
 import apps.snps.views as views
 
 urlpatterns = [
-    url(r'^$', views.index_view),
-    url(r'^upload', views.upload_view),
-    url(r'^batch', views.batch_view),
-    url(r'^snps', views.snps_view),
+    url(r'^$', views.index_view, name='index'),
+
+    url(r'upload', views.upload_view, name='upload'),
+
+    url(r'^batch', views.batch_view, name='batch'),
+    url(r'^snps', views.snps_view, name='snps'),
     url(r'^login', views.login, name='account_login')
 ]

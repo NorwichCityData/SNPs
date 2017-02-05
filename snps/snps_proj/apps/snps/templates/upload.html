@@ -1,8 +1,8 @@
 {% extends 'template_base.html' %}
+{% load widget_tweaks %}
 
 
 {% block titleblock %}
-
     File Upload
 {% endblock %}
 
@@ -18,5 +18,30 @@
 
 
 {% block content %}
-    UPLOAD CONTENT
+
+    <div class="wrapper">
+        Please select an Excel file from your computer to process using DNAFit
+        <br/><br/>
+        <form method="POST" class="post-form" enctype="multipart/form-data">{% csrf_token %}
+            <div class="form-group">
+                {{ form.reference.errors }}
+                <label for="{{ form.subject.id_for_label }}">Reference for File</label>
+                {{ form.reference|add_class:"form-control" }}
+            </div>
+            <div class="form-group">
+                {{ form.notes.errors }}
+                <label for="{{ form.Notes.id_for_label }}">Notes on File</label>
+                {{ form.notes|add_class:"form-control" }}
+            </div>
+            <div class="form-group">
+                {{ form.file.errors }}
+
+                {{ form.file}}
+            </div>
+
+            <button type="submit" class="save btn btn-default">Upload</button>
+
+        </form>
+    </div>
+
 {% endblock %}

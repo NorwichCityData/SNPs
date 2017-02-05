@@ -30,14 +30,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 LOGIN_URL = '/snps/login/'
 ACCOUNT_LOGOUT_REDIRECT_URL = '/accounts/login/'
 
 SITE_ID = 1
 
 LOGIN_REDIRECT_URL = "/snps/"
-
 
 # Application definition
 
@@ -49,14 +47,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'chunked_upload',
     'snps',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    'widget_tweaks'
 ]
 
 MIDDLEWARE = [
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -64,6 +65,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+]
+
+MIDDLEWARE_CLASSES = [
+    'threadlocals.middleware.ThreadLocalMiddleware',
 ]
 
 ROOT_URLCONF = 'snps_proj.urls'
@@ -95,6 +101,12 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
+}
+
+MONGO = {
+    "host": "127.0.0.1",
+    "port": 27017,
+    "database": "snps"
 }
 
 # Password validation
@@ -143,3 +155,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'snps_proj', 'apps', 'snps', 'static', 'static')
+UPLOADS = 'file_uploads/'
+
+NOUNS = {
+    "GET": "get",
+    "PUT": "put",
+    "DELETE": "delete"
+}

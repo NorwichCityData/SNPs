@@ -18,5 +18,22 @@
 
 
 {% block content %}
-    INDEX CONENT
+    <div>
+        <table class="table">
+            <tr>
+                {% for item in headers %}
+                    <th>{{ item }}</th>
+                {% endfor %}
+            </tr>
+            {% for row in records %}
+                <tr>
+                    {% for col, value in row.items %}
+
+                        <td>{{ value }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+
+        </table>
+    </div>
 {% endblock %}
