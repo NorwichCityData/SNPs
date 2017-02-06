@@ -18,7 +18,10 @@ def login(request):
 @login_required
 def index_view(request):
     docs = cursor_to_list(get_file_records_for_user(user_id=request.user.id))
-    headers=docs[0].keys()
+    if docs:
+        headers=docs[0].keys()
+    else:
+        headers = list()
     return render(request, 'index.html', {'headers': headers, 'records': docs})
 
 
