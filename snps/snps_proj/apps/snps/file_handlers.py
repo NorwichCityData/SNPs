@@ -14,7 +14,7 @@ def handle_uploaded_file(form, user_id):
     f = form.files['file']
     # save file to disk
     f_name = str(uuid.uuid4()) + '.part'
-    with open(os.path.join(settings.PROJECT_ROOT, settings.UPLOADS, f_name), 'wb+') as destination:
+    with open(os.path.join(settings.MEDIA_ROOT, f_name), 'wb+') as destination:
         for chunk in f.chunks():
             destination.write(chunk)
     # now create db record for file
