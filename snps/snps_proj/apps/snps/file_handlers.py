@@ -5,12 +5,13 @@ from django.conf import settings
 import uuid
 import os
 import datetime
-from .mongo import edit_file_record
+from .mongo import file_record
 from threadlocals.threadlocals import get_current_request
 from settings import NOUNS
 
-def handle_uploaded_file(form, user_id):
 
+# method to write uploaded file to media location and create mongo record
+def handle_uploaded_file(form, user_id):
     f = form.files['file']
     # save file to disk
     f_name = str(uuid.uuid4()) + '.part'
@@ -26,5 +27,9 @@ def handle_uploaded_file(form, user_id):
     fields['notes'] = form.data['notes']
     fields['user_reference'] = form.data['reference']
     fields['user'] = user_id
-    edit_file_record(fields, NOUNS['PUT'])
+    file_record(fields=fields, task=NOUNS['PUT'])
 
+
+# method to parse excel spreadsheet and store data in existing record
+def parse_spreadsheet(mongo_id):
+    record = file_record(task=NOUNS['GET'], target_id=mongo_id)

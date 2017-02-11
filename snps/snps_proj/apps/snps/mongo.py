@@ -30,7 +30,7 @@ def get_collection_handle(component):
     return handle_dict.get(component)
 
 
-def edit_file_record(fields, task, target_id = None,):
+def file_record(task, fields, target_id = None, ):
     if task == 'get':
         # get the record
         pass
