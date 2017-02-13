@@ -54,19 +54,19 @@ def parse_spreadsheet_from_mongo_record(mongo_id):
     # get samples
     samples_df = pd.DataFrame(df.iloc[2:, :])
 
-    def refactor_sample_record(x):
-        sample_dict = dict(name=x[0])
-        characteristics = list()
-
-        for i in range(1, len(x)):
-            characteristics.append(dict(gene=gene_df[i], rs=rs_df[i], snp=x[i]))
-
-        sample_dict['characteristics'] = characteristics
-        return sample_dict
-
-
     v = samples_df.apply(lambda row: refactor_sample_record(row), axis=1)
     return list(v)
+
+def refactor_sample_record(x):
+    sample_dict = dict(name=x[0])
+    characteristics = list()
+
+    for i in range(1, len(x)):
+        characteristics.append(dict(gene=gene_df[i], rs=rs_df[i], snp=x[i]))
+
+    sample_dict['characteristics'] = characteristics
+    return sample_dict
+
 
 
 
