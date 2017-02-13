@@ -155,7 +155,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'snps_proj', 'apps', 'snps', 'static', 'static')
-UPLOADS = 'file_uploads/'
+
+
+MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'file_uploads')
+if not os.path.isdir(MEDIA_ROOT):
+    os.mkdir(MEDIA_ROOT, mode=0o777)
+
+MEDIA_URL = 'media/'
 
 NOUNS = {
     "GET": "get",
