@@ -5,17 +5,22 @@ from settings import NOUNS
 from django.conf import settings
 
 
-
 def get_collection_ref(collection_name):
-    return pymongo.MongoClient(settings.MONGO["host"], settings.MONGO["port"])[settings.MONGO["database"]][collection_name]
+    return pymongo.MongoClient(settings.MONGO["host"], settings.MONGO["port"])[settings.MONGO["database"]][
+        collection_name]
 
 
 def to_mongo_id(id):
     return ObjectId(id)
 
+
 def cursor_to_list(cursor):
     records = []
     for r in cursor:
+        try:
+            r['id'] = r.pop('_id')
+        except:
+            pass
         records.append(r)
     return records
 
@@ -31,7 +36,7 @@ def get_collection_handle(component):
     return handle_dict.get(component)
 
 
-def file_record(task, target_id = None, fields=None):
+def file_record(task, target_id=None, fields=None):
     if task == NOUNS['GET']:
         # we are dealing with a simple get
         if target_id:
@@ -43,7 +48,7 @@ def file_record(task, target_id = None, fields=None):
             # we are dealing with an update
             record = get_collection_handle('file').find_one({'_id': target_id})
             record['snps'] = fields
-            return get_collection_handle('file').update({'_id': target_id}, {"$set":record})
+            return get_collection_handle('file').update({'_id': target_id}, {"$set": record})
         elif fields:
             # we are dealing with a new record
             doc = get_collection_handle('file').insert(fields)
@@ -59,5 +64,44 @@ def file_record(task, target_id = None, fields=None):
 
 
 def get_file_records_for_user(user_id):
-    docs = get_collection_handle('file').find({'user': user_id}, {"_id": 0, 'snps': 0})
-    return docs
+    docs = get_collection_handle('file').find({'user': user_id},
+                                              {'_id': 1, 'orig_name': 1, 'user_reference': 1, 'notes': 1,
+                                               'uploaded_on': 1})
+
+    return cursor_to_list(docs)
+
+
+def get_samples_in_batch(batch_id):
+    doc = get_collection_handle('file').find_one({'_id': ObjectId(batch_id)}, {'snps.name': 1})
+    return doc
+
+
+def get_snps_in_sample(batch_id, sample_name):
+    '''
+    doc = get_collection_handle('file').aggregate(
+        [
+            {'$match': {
+                '_id': ObjectId(batch_id)
+            }},
+            {'$unwind': "$snps"},
+            {'$match':{
+                'snps.snps.name': sample_name
+            }}
+
+
+        ]
+    )
+    '''
+    doc = get_collection_handle('file').find(
+        {
+            '_id': ObjectId(batch_id)
+        },
+        {
+            'snps': {
+                '$elemMatch': {
+                    'name': sample_name
+                }
+            }
+        }
+    )
+    return doc

@@ -2,8 +2,8 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, reverse
 from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from allauth.account.forms import LoginForm, SignupForm
-from .mongo import get_file_records_for_user, cursor_to_list
-
+from bson import json_util
+from . import mongo
 from .file_handlers import handle_uploaded_file, parse_spreadsheet_from_mongo_record
 from .mongo import file_record
 from .forms import UploadFileForm
@@ -19,7 +19,7 @@ def login(request):
 
 @login_required
 def index_view(request):
-    docs = cursor_to_list(get_file_records_for_user(user_id=request.user.id))
+    docs = mongo.cursor_to_list(mongo.get_file_records_for_user(user_id=request.user.id))
     if docs:
         headers = docs[0].keys()
     else:
@@ -55,3 +55,21 @@ def upload_view(request):
     else:
         form = UploadFileForm()
     return render(request, 'upload.html', {'form': form})
+
+
+@login_required
+def view_batch(request, batch_id):
+    return render(request, 'batches.html', {'batch_id': batch_id})
+
+
+@login_required
+def get_samples_in_batch(request, batch_id):
+    batch = mongo.get_samples_in_batch(batch_id)
+    data = batch['snps']
+    return HttpResponse(json_util.dumps({'data': data}))
+
+@login_required
+def get_snps_in_sample(request, batch_id, sample_name):
+
+    snps = mongo.get_snps_in_sample(batch_id, sample_name)
+    return HttpResponse(json_util.dumps({'snps': snps}))

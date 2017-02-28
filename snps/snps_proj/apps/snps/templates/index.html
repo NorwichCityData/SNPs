@@ -1,39 +1,58 @@
 {% extends 'template_base.html' %}
 
-{% block titleblock %}
 
+
+{% block titleblock %}
     DNAfit Frontpage
 {% endblock %}
 
 
 {% block js_bottom_block %}
     <script>
-        $(document).ready(function () {
-            $('.active').removeClass('active')
-            $('#index_link').addClass('active')
-        })
+
     </script>
 {% endblock %}
 
 
 
 {% block content %}
-    <div>
-        <table class="table">
+    <div class="files_table_div">
+        <table id="files_table" class="display dataTable">
+            <thead>
             <tr>
-                {% for item in headers %}
-                    <th>{{ item }}</th>
-                {% endfor %}
+                <th>File Name</th>
+                <th>Reference</th>
+                <th>Notes</th>
+                <th>Uploaded</th>
+                <th>View Batch</th>
+                <th>Delete Batch</th>
             </tr>
+            </thead>
+            <tbody>
             {% for row in records %}
                 <tr>
-                    {% for col, value in row.items %}
+                    <td>{{ row.orig_name }}</td>
+                    <td>{{ row.user_reference }}</td>
+                    <td>{{ row.notes }}</td>
+                    <td>{{ row.uploaded_on }}</td>
 
-                        <td>{{ value }}</td>
-                    {% endfor %}
+                    <td style="text-align: center; vertical-align: middle">
+                        <p data-placement="top" data-toggle="tooltip" title="Edit">
+                            <a href="/snps/view_batch/{{ row.id }}" class="btn btn-primary btn-xs"
+                               data-title="Edit" data-target="#view"><span
+                                    class="glyphicon glyphicon-pencil"></span></a>
+                        </p>
+                    </td>
+                    <td style="text-align: center; vertical-align: middle">
+                        <p data-placement="top" data-toggle="tooltip" title="Delete">
+                            <button class="btn btn-danger btn-xs" data-batch_id="{{ row.id }}" data-title="Delete"
+                                    data-toggle="modal"
+                                    data-target="#delete"><span class="glyphicon glyphicon-trash"></span></button>
+                        </p>
+                    </td>
                 </tr>
             {% endfor %}
-
+            </tbody>
         </table>
     </div>
 {% endblock %}

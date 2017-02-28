@@ -6,3 +6,13 @@ body {
     width: 800px;
     margin: 0 auto;
 }
+
+.files_table_div{
+    width: 80%;
+    margin: 0 auto;
+}
+
+table button{
+    text-align: center;
+}
+

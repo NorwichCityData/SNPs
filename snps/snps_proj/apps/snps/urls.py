@@ -19,10 +19,11 @@ import apps.snps.views as views
 
 urlpatterns = [
     url(r'^$', views.index_view, name='index'),
-
     url(r'upload', views.upload_view, name='upload'),
-
     url(r'^batch', views.batch_view, name='batch'),
     url(r'^snps', views.snps_view, name='snps'),
-    url(r'^login', views.login, name='account_login')
+    url(r'^login', views.login, name='account_login'),
+    url(r'^view_batch/(?P<batch_id>[0-9a-z]+)/$', views.view_batch, name='view_batch'),
+    url(r'^get_samples_in_batch_data/(?P<batch_id>[0-9a-z]+)/$', views.get_samples_in_batch),
+    url(r'^get_snps_in_sample/(?P<batch_id>\w+)/(?P<sample_name>\w+)/$', views.get_snps_in_sample),
 ]

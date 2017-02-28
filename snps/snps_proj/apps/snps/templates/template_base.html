@@ -20,6 +20,7 @@
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
 
+
     <!-- OUR STYLES -->
     <link rel="stylesheet" href="{% static 'css/global_styles.css' %}">
 </head>
@@ -45,7 +46,6 @@
                 <li id="index_link"><a href="/snps/">Fontpage <span class="sr-only">(current)</span></a></li>
                 <li id="batch_link"><a href="/snps/batch/">View Batches</a></li>
                 <li id="upload_link"><a href="/snps/upload/">Upload Data</a></li>
-
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
@@ -70,6 +70,13 @@
 {% block content %}
 {% endblock %}
 
+
+<!-- DATATABLES -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.css"/>
+
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.js"></script>
+<script type="text/javascript" src="{% static "js/jquery.cookie.js" %}"></script>
+<script src="{% static 'js/generic_handlers.js' %}"></script>
 {% block js_bottom_block %}
 {% endblock %}
 

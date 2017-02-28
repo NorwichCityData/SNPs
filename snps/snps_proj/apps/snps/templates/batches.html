@@ -10,10 +10,103 @@
         $(document).ready(function () {
             $('.active').removeClass('active')
             $('#batch_link').addClass('active')
+            var batch_id = $('#batch_id').val()
+            var table_data_url = "/snps/get_samples_in_batch_data/" + batch_id
+            var table = $('#example').DataTable({
+                "ajax": table_data_url,
+                "columns": [
+                    {
+                        "className": 'details-control',
+                        "orderable": false,
+                        "data": null,
+                        "defaultContent": ''
+                    },
+                    {"data": "name"}
+
+                ],
+                "order": [[1, 'asc']]
+            });
+
+            // Add event listener for opening and closing details
+            $('#example tbody').on('click', 'td.details-control', function () {
+                var tr = $(this).closest('tr');
+                var row = table.row(tr);
+
+                if (row.child.isShown()) {
+                    // This row is already open - close it
+                    row.child.hide();
+                    tr.removeClass('shown');
+                }
+                else {
+                    // Open this row
+                    expand_row(row)
+                    tr.addClass('shown');
+                }
+            });
         })
+
+
+        function expand_row(d) {
+            var sample_name = d.data().name
+            var batch_id = $('#batch_id').val()
+            var url = '/snps/get_snps_in_sample/' + batch_id + '/' + sample_name + '/'
+            $.ajax({
+                "url": url,
+                "type": "GET",
+                "dataType": 'json'
+            }).done(function (data) {
+                var table = $('<table></table>')
+                var thead = $('<thead>').append($('<tr>').append($('<th>').html('gene')).append($('<th>').html('rs')).append($('<th>').html('snp')))
+                var tbody = $('<tbody>')
+                $(data.snps[0].snps[0].characteristics).each(function (index, element) {
+                    var line = '<tr><td>' + element.gene + '</td><td>' + element.rs + '</td><td>' + element.snp + '</td></tr>'
+                    $(tbody).append(line)
+                })
+                table.append(thead)
+                table.append(tbody)
+                console.log(table)
+                d.child(table).show()
+            })
+        }
+
+
+        function format() {
+            // `d` is the original data object for the row
+            return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
+                '<tr>' +
+                '<td>Full name:</td>' +
+                '<td>' + 'a' + '</td>' +
+                '</tr>' +
+                '<tr>' +
+                '<td>Extension number:</td>' +
+                '<td>' + 'a' + '</td>' +
+                '</tr>' +
+                '<tr>' +
+                '<td>Extra info:</td>' +
+                '<td>And any further details here (images etc)...</td>' +
+                '</tr>' +
+                '</table>';
+        }
+
     </script>
 {% endblock %}
 
 {% block content %}
-    BATCHES CONENT
+    <input type="hidden" id="batch_id" name="batch_id" value="{{ batch_id }}"/>
+    <div class="files_table_div">
+        <table id="example" class="display" cellspacing="0">
+            <thead>
+            <tr>
+                <th></th>
+                <th>Name</th>
+            </tr>
+            </thead>
+            <tfoot>
+            <tr>
+                <th></th>
+                <th>Name</th>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
 {% endblock %}
