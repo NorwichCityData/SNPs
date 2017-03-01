@@ -16,3 +16,13 @@ table button{
     text-align: center;
 }
 
+.snps_table{
+    width: 100%
+}
+
+.details-control{
+    width:10%;
+    cursor: pointer;
+    color: darkslategrey
+}
+
