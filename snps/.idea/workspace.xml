@@ -4,18 +4,8 @@
     <bookmark url="file://$PROJECT_DIR$/snps_proj/settings.py" description="'django.contrib.auth.context_processors.auth'," line="86" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62d49fcb-1c46-42ff-b607-39396f57ff51" name="Default" comment="resolve git issue">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/mongoSettings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/snps_proj/apps/snps/static/js/batches.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
+    <list default="true" id="62d49fcb-1c46-42ff-b607-39396f57ff51" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/requirements.txt" afterPath="$PROJECT_DIR$/requirements.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/snps_proj/apps/snps/mongo.py" afterPath="$PROJECT_DIR$/snps_proj/apps/snps/mongo.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/snps_proj/apps/snps/static/css/global_styles.css" afterPath="$PROJECT_DIR$/snps_proj/apps/snps/static/css/global_styles.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/snps_proj/apps/snps/static/js/generic_handlers.js" afterPath="$PROJECT_DIR$/snps_proj/apps/snps/static/js/generic_handlers.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/snps_proj/apps/snps/templates/batches.html" afterPath="$PROJECT_DIR$/snps_proj/apps/snps/templates/batches.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/snps_proj/apps/snps/urls.py" afterPath="$PROJECT_DIR$/snps_proj/apps/snps/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/snps_proj/apps/snps/views.py" afterPath="$PROJECT_DIR$/snps_proj/apps/snps/views.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -912,7 +902,14 @@
       <option name="project" value="LOCAL" />
       <updated>1488286170418</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="implement snps lookup">
+      <created>1488884434374</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1488884434374</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -987,7 +984,8 @@
     <MESSAGE value="snps data now parsed out of excel files" />
     <MESSAGE value="adding view to inspect samples and snps" />
     <MESSAGE value="resolve git issue" />
-    <option name="LAST_COMMIT_MESSAGE" value="resolve git issue" />
+    <MESSAGE value="implement snps lookup" />
+    <option name="LAST_COMMIT_MESSAGE" value="implement snps lookup" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
