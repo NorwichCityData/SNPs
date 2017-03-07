@@ -77,21 +77,6 @@ def get_samples_in_batch(batch_id):
 
 
 def get_snps_in_sample(batch_id, sample_name):
-    '''
-    doc = get_collection_handle('file').aggregate(
-        [
-            {'$match': {
-                '_id': ObjectId(batch_id)
-            }},
-            {'$unwind': "$snps"},
-            {'$match':{
-                'snps.snps.name': sample_name
-            }}
-
-
-        ]
-    )
-    '''
     doc = get_collection_handle('file').find(
         {
             '_id': ObjectId(batch_id)
@@ -102,6 +87,19 @@ def get_snps_in_sample(batch_id, sample_name):
                     'name': sample_name
                 }
             }
+        }
+    )
+    return doc
+
+
+def update_snp(batch_id, sample_name, rs, trait, chromosome, position):
+    doc = get_collection_handle('file').aggregate(
+        {
+            '_id': ObjectId(batch_id),
+            'snps': {'$elemMatch': {'name': sample_name}}
+        },
+        {
+            '$project': {'_id': 0, 'snps': 1}
         }
     )
     return doc

@@ -1,110 +1,27 @@
-{% extends 'template_base.html' %} {% block titleblock %} View Batches {% endblock %} {% block js_bottom_block %}
-<script>
-        $(document).ready(function () {
-            $('.active').removeClass('active')
-            $('#batch_link').addClass('active')
-            var batch_id = $('#batch_id').val()
-            var table_data_url = "/snps/get_samples_in_batch_data/" + batch_id
-            var table = $('#example').DataTable({
-                "ajax": table_data_url,
-                "columns": [
-                    {
-                        "className": 'text-center details-control',
-                        "orderable": false,
-                        "data": null,
-                        "defaultContent": '<span class="glyphicon glyphicon-plus"></span>'
-                    },
-                    {"data": "name"}
+{% extends 'template_base.html' %} {% block titleblock %} View Batches {% endblock %}
+{% load staticfiles %}
+{% block js_bottom_block %}
+    <script src="{%  static 'js/batches.js' %}"></script>
+{% endblock %}
 
-                ],
-                "order": [[1, 'asc']]
-            });
-
-            // Add event listener for opening and closing details
-            $('#example tbody').on('click', 'td.details-control', function () {
-                var tr = $(this).closest('tr');
-                var row = table.row(tr);
-
-                if (row.child.isShown()) {
-                    // This row is already open - close it
-                    row.child.hide();
-                    tr.removeClass('shown');
-                    var td = $(tr).children()[0]
-                    console.log(td)
-                    $(td).html("<span class='glyphicon glyphicon-plus'></span>")
-                    
-                }
-                else {
-                    // Open this row
-                    expand_row(row)
-                    tr.addClass('shown');
-                    var td = $(tr).children()[0]
-                    console.log(td)
-                    $(td).html("<span class='glyphicon glyphicon-minus'></span>")
-                    
-                }
-            });
-        })
-
-
-        function expand_row(d) {
-            var sample_name = d.data().name
-            var batch_id = $('#batch_id').val()
-            var url = '/snps/get_snps_in_sample/' + batch_id + '/' + sample_name + '/'
-            $.ajax({
-                "url": url,
-                "type": "GET",
-                "dataType": 'json'
-            }).done(function (data) {
-                var table = $('<table class="snps_table"></table>')
-                var thead = $('<thead>').append($('<tr>').append($('<th>').html('gene')).append($('<th>').html('rs')).append($('<th>').html('snp')))
-                var tbody = $('<tbody>')
-                $(data.snps[0].snps[0].characteristics).each(function (index, element) {
-                    var line = '<tr><td>' + element.gene + '</td><td>' + element.rs + '</td><td>' + element.snp + '</td></tr>'
-                    $(tbody).append(line)
-                })
-                table.append(thead)
-                table.append(tbody)
-                console.log(table)
-                d.child(table).show()
-            })
-        }
-
-
-        function format() {
-            // `d` is the original data object for the row
-            return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
-                '<tr>' +
-                '<td>Full name:</td>' +
-                '<td>' + 'a' + '</td>' +
-                '</tr>' +
-                '<tr>' +
-                '<td>Extension number:</td>' +
-                '<td>' + 'a' + '</td>' +
-                '</tr>' +
-                '<tr>' +
-                '<td>Extra info:</td>' +
-                '<td>And any further details here (images etc)...</td>' +
-                '</tr>' +
-                '</table>';
-        }
-
-    </script> {% endblock %} {% block content %}
-<input type="hidden" id="batch_id" name="batch_id" value="{{ batch_id }}" />
-<div class="files_table_div">
-    <table id="example" class="display" cellspacing="0">
-        <thead>
+{% block content %}
+    <input type="hidden" id="preload_img_url" value="{% static "img/preload.gif" %}" />
+    <input type="hidden" id="batch_id" name="batch_id" value="{{ batch_id }}"/>
+    <input type="hidden" id="last_sample_clicked" />
+    <div class="files_table_div">
+        <table id="example" class="display" cellspacing="0">
+            <thead>
             <tr>
                 <th></th>
                 <th>Name</th>
             </tr>
-        </thead>
-        <tfoot>
-            <tr>
-                <th></th>
-                <th>Name</th>
+            </thead>
+            <tfoot>
+            <tr class="snp_row">
+                <td></td>
+                <td>Name</td>
             </tr>
-        </tfoot>
-    </table>
-</div>
+            </tfoot>
+        </table>
+    </div>
 {% endblock %}

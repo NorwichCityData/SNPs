@@ -26,4 +26,5 @@ urlpatterns = [
     url(r'^view_batch/(?P<batch_id>[0-9a-z]+)/$', views.view_batch, name='view_batch'),
     url(r'^get_samples_in_batch_data/(?P<batch_id>[0-9a-z]+)/$', views.get_samples_in_batch),
     url(r'^get_snps_in_sample/(?P<batch_id>\w+)/(?P<sample_name>\w+)/$', views.get_snps_in_sample),
+    url(r'^get_snp_data/$', views.get_snp_data),
 ]

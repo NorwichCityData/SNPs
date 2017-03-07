@@ -15,3 +15,10 @@ requests==2.13.0
 requests-oauthlib==0.7.0
 six==1.10.0
 xlrd==1.0.0
+beautifulsoup4==4.5.1
+bs4==0.0.1
+py==1.4.32
+pytest==3.0.5
+urllib5
+wheel==0.24.0
+wikitools==1.3

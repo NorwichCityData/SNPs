@@ -8,6 +8,7 @@ from .file_handlers import handle_uploaded_file, parse_spreadsheet_from_mongo_re
 from .mongo import file_record
 from .forms import UploadFileForm
 from settings import NOUNS
+from . import scrape
 
 
 def login(request):
@@ -68,8 +69,25 @@ def get_samples_in_batch(request, batch_id):
     data = batch['snps']
     return HttpResponse(json_util.dumps({'data': data}))
 
+
 @login_required
 def get_snps_in_sample(request, batch_id, sample_name):
-
     snps = mongo.get_snps_in_sample(batch_id, sample_name)
     return HttpResponse(json_util.dumps({'snps': snps}))
+
+
+@login_required
+def get_snp_data(request):
+    rs = request.GET.get('snp')
+    variant = request.GET.get('variant')
+    batch = request.GET.get('batch_id')
+    sample = request.GET.get('sample')
+
+    resp = scrape.snp(rs, variant)
+
+    #if resp and not 'error' in resp:
+    #    mongo.update_snp(batch, sample, rs, resp['trait'], resp['chromosome'], resp['position'])
+
+    resp = json_util.dumps(resp)
+
+    return HttpResponse(resp)

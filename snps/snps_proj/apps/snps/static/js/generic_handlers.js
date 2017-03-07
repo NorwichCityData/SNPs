@@ -9,7 +9,12 @@ $(document).ready(function () {
         table = $('#files_table').DataTable();
     })
     $('table button').on('click', handle_table_btn_press)
-})
+    $('.genename img').hide()
+    $('table').on('click', lookup_snp)
+}).ajaxSend(function (event, jqxhr, settings) {
+    console.log('ajax send')
+    console.log(event.target)
+});
 
 function handle_table_btn_press(e) {
     var el = e.currentTarget
