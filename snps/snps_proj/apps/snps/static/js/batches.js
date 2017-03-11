@@ -68,14 +68,19 @@ function expand_row(d) {
         })
         table.append(thead)
         table.append(tbody)
-        console.log(table)
         d.child(table).show()
+        lookup_row(table)
     })
 }
 
 function lookup_snp(e) {
-
-    var t = $(e.target)
+    var t
+    if ('currentTarget' in e) {
+        t = $(e.target)
+    }
+    else{
+        t = $(e)
+    }
     console.log(this)
     $(t.find('img', this)).css('visibility', 'visible')
     var row = $($(t).closest('tr')[0])
@@ -95,10 +100,21 @@ function lookup_snp(e) {
             row.find('.position').remove()
             row.find('.trait').remove()
         }
-        // handle chromosome
+        // update row info
         row.find('.chromosome').removeClass('cell_pending').html(d.chromosome)
         row.find('.position').removeClass('cell_pending').html(d.position)
         row.find('.trait').removeClass('cell_pending').html(d.trait)
         row.find('img').hide()
+        row.addClass('lookup_complete')
+    })
+}
+
+
+function lookup_row(table){
+    // table is the table just created in the clicked expanded row
+    // get the rows which now need to be lookup up in snpedia
+    var rows = $(table).find('.snp_row')
+    $(rows).each(function(idx, row) {
+        lookup_snp(row)
     })
 }

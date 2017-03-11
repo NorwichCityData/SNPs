@@ -36,3 +36,7 @@ table button{
     background-color: #f2f2f2;
     color: #bfbfbf
 }
+
+.lookup_complete{
+    background-color: #ffffe6 !important;
+}
