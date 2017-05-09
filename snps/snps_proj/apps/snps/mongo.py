@@ -6,8 +6,7 @@ from django.conf import settings
 
 
 def get_collection_ref(collection_name):
-    return pymongo.MongoClient(settings.MONGO["host"], settings.MONGO["port"])[settings.MONGO["database"]][
-        collection_name]
+    return settings.MONGO_CLIENT[collection_name]
 
 
 def to_mongo_id(id):

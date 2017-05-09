@@ -105,6 +105,17 @@ DATABASES = {
     }
 }
 
+
+MONGO_HOST = '127.0.0.1'
+MONGO_USER = 'copo_admin'
+MONGO_USER_PASSWORD = 'Apple123'
+MONGO_MAX_POOL_SIZE = 100
+MONGO_DB = 'snps'
+uri = 'mongodb://' + MONGO_USER + ':' + MONGO_USER_PASSWORD + '@' + MONGO_HOST
+# this is the global DB connection, either use get_collection_ref in dal.mongo_util.py or refer to this setting
+import pymongo
+MONGO_CLIENT = pymongo.MongoClient(uri, maxPoolSize=MONGO_MAX_POOL_SIZE)[MONGO_DB]
+
 MONGO = {
     "host": "127.0.0.1",
     "port": 27017,

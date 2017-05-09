@@ -10,7 +10,6 @@ from .forms import UploadFileForm
 from settings import NOUNS
 from . import scrape
 
-
 def login(request):
     context = {
         'login_form': LoginForm()
@@ -83,11 +82,13 @@ def get_snp_data(request):
     batch = request.GET.get('batch_id')
     sample = request.GET.get('sample')
 
-    resp = scrape.snp(rs, variant)
+    resp = scrape.parse_snpedia_data(rs, variant)
+    #resp = scrape.search_snpedia(rs)
 
     #if resp and not 'error' in resp:
     #    mongo.update_snp(batch, sample, rs, resp['trait'], resp['chromosome'], resp['position'])
 
     resp = json_util.dumps(resp)
-
+    with open('dump.json', 'a') as f:
+        f.write(resp)
     return HttpResponse(resp)
