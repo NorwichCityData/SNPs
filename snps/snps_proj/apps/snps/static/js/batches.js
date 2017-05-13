@@ -95,14 +95,15 @@ function lookup_snp(e) {
         dataType: "json",
         type: 'GET'
     }).done(function (d) {
+        console.log(d)
         if('error' in d){
             row.find('.chromosome').attr('colspan', 3).addClass('text-center').html(d.error)
             row.find('.position').remove()
             row.find('.trait').remove()
         }
         // update row info
-        row.find('.chromosome').removeClass('cell_pending').html(d.chromosome)
-        row.find('.position').removeClass('cell_pending').html(d.position)
+        row.find('.chromosome').removeClass('cell_pending').html(d.Chromosome)
+        row.find('.position').removeClass('cell_pending').html(d.Position)
         row.find('.trait').removeClass('cell_pending').html(d.trait)
         row.find('img').hide()
         row.addClass('lookup_complete')

@@ -5,6 +5,7 @@ import argparse
 from wikitools import wiki
 from wikitools import page
 
+
 def getLocations(soup):
     """
     requires a base BeatifulSoup object(with url)
@@ -90,24 +91,33 @@ def snp(rsid, pair):
     trows = soup('table')[1].find_all('tr')
     if len(trows) < 2:
         return {'error': 'That base pair does not have a trait associated with it.'}
-    #locations = getLocations(soup)
+    # locations = getLocations(soup)
     genotypeData = getSnpData(trows)
     genotypeData['rsid'] = rsid
     genotypeData['genotype'] = pair
     return genotypeData
 
+
 def parse_snpedia_data(rsid, pair):
     if rsid[0] == 'I' or rsid[0] == 'i':
         return {'error': 'Cannot find indicators, must use rs #s'}
     formatPair = '(' + pair[0].upper() + ';' + pair[1].upper() + ')'
-    soup = BeautifulSoup(
-        urllib.request.urlopen('http://snpedia.com/index.php/' + rsid + formatPair).read(),
-        "html.parser")
-    trows = soup('table')[1]
     genotypeData = dict()
-    genotypeData['trait'] = soup('table')[0].text
-    genotypeData.update(snp(rsid, pair))
+    try:
+        url = 'http://bots.snpedia.com/index.php/' + rsid + formatPair
+        soup = BeautifulSoup(
+            urllib.request.urlopen(url).read(),
+            "html.parser")
+        print('worked: ' + url)
+        trows = soup('table')[1]
+
+        genotypeData['trait'] = soup('table')[0].text
+        genotypeData.update(snp(rsid, pair))
+    except urllib.error.HTTPError:
+        print('not worked: ' + url)
+
     return genotypeData
+
 
 def search_snpedia(snp):
     """

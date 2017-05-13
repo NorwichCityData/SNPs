@@ -83,12 +83,16 @@ def get_snp_data(request):
     sample = request.GET.get('sample')
 
     resp = scrape.parse_snpedia_data(rs, variant)
+
     #resp = scrape.search_snpedia(rs)
 
     #if resp and not 'error' in resp:
     #    mongo.update_snp(batch, sample, rs, resp['trait'], resp['chromosome'], resp['position'])
-
+    if len(resp) == 0:
+        resp['Chromosome'] = '-'
+        resp['Position'] = '-'
+        resp['trait'] = 'No information for this SNP found in SNPedia'
     resp = json_util.dumps(resp)
-    with open('dump.json', 'a') as f:
-        f.write(resp)
+
+
     return HttpResponse(resp)
