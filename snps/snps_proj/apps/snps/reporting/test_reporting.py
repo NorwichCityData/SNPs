@@ -4,6 +4,7 @@ import unittest
 from fpdf import Template
 from .reporting import get_template, add_fields
 import os
+from .reporting2 import do_report
 
 
 class TestReportingMethods(unittest.TestCase):
@@ -18,7 +19,7 @@ class TestReportingMethods(unittest.TestCase):
         with open('test.pdf') as pdf_file:
             self.assertTrue(pdf_file)
         #os.remove('test.pdf')
-    '''
+    
 
     def test_pdf_fields(self):
         t = get_template()
@@ -26,6 +27,10 @@ class TestReportingMethods(unittest.TestCase):
         f = pdf.render('test.pdf')
         with open('test.pdf') as pdf_file:
             self.assertTrue(pdf_file)
+    '''
+
+    def test_reportlab(self):
+        r = do_report()
 
 if __name__ == '__main__':
     unittest.main()
