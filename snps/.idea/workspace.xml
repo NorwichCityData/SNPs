@@ -6,11 +6,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="62d49fcb-1c46-42ff-b607-39396f57ff51" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/snps_proj/apps/snps/reporting/reporting2.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/snps_proj/apps/snps/reporting/reporting.py" afterPath="$PROJECT_DIR$/snps_proj/apps/snps/reporting/reporting.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/snps_proj/apps/snps/reporting/test_reporting.py" afterPath="$PROJECT_DIR$/snps_proj/apps/snps/reporting/test_reporting.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/snps_proj/apps/snps/reporting/reporting2.py" afterPath="$PROJECT_DIR$/snps_proj/apps/snps/reporting/reporting2.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,7 +17,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/snps$test_reporting.coverage" NAME="test_reporting Coverage Results" MODIFIED="1495287074268" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/snps$test_reporting.coverage" NAME="test_reporting Coverage Results" MODIFIED="1495365312175" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/snps$Test__snps_proj_apps_snps_templates_batches_html.coverage" NAME="Test: snps_proj.apps.snps.templates.batches.html Coverage Results" MODIFIED="1488815154979" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
   <component name="CreatePatchCommitExecutor">
@@ -95,8 +92,8 @@
       <file leaf-file-name="reporting2.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/snps_proj/apps/snps/reporting/reporting2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="262">
-              <caret line="24" column="71" lean-forward="false" selection-start-line="24" selection-start-column="71" selection-end-line="24" selection-end-column="71" />
+            <state relative-caret-position="343">
+              <caret line="47" column="0" lean-forward="true" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
               <folding>
                 <element signature="e#48#83#0" expanded="true" />
               </folding>
@@ -987,38 +984,45 @@
       <option name="project" value="LOCAL" />
       <updated>1494680164145</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="implement support for reportlab since feature set is much richer">
+      <created>1495287316782</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1495287316782</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="test_reporting - 2017.05.20 at 14h 21m 44s.xml">
+    <history-entry file="test_reporting - 2017.05.21 at 12h 07m 47s.xml">
       <configuration name="test_reporting" configurationId="tests" />
     </history-entry>
-    <history-entry file="test_reporting - 2017.05.20 at 14h 21m 57s.xml">
+    <history-entry file="test_reporting - 2017.05.21 at 12h 08m 39s.xml">
       <configuration name="test_reporting" configurationId="tests" />
     </history-entry>
-    <history-entry file="test_reporting - 2017.05.20 at 14h 22m 00s.xml">
+    <history-entry file="test_reporting - 2017.05.21 at 12h 09m 20s.xml">
       <configuration name="test_reporting" configurationId="tests" />
     </history-entry>
-    <history-entry file="test_reporting - 2017.05.20 at 14h 22m 33s.xml">
+    <history-entry file="test_reporting - 2017.05.21 at 12h 09m 33s.xml">
       <configuration name="test_reporting" configurationId="tests" />
     </history-entry>
-    <history-entry file="test_reporting - 2017.05.20 at 14h 22m 36s.xml">
+    <history-entry file="test_reporting - 2017.05.21 at 12h 10m 32s.xml">
       <configuration name="test_reporting" configurationId="tests" />
     </history-entry>
-    <history-entry file="test_reporting - 2017.05.20 at 14h 23m 11s.xml">
+    <history-entry file="test_reporting - 2017.05.21 at 12h 11m 37s.xml">
       <configuration name="test_reporting" configurationId="tests" />
     </history-entry>
-    <history-entry file="test_reporting - 2017.05.20 at 14h 23m 52s.xml">
+    <history-entry file="test_reporting - 2017.05.21 at 12h 12m 07s.xml">
       <configuration name="test_reporting" configurationId="tests" />
     </history-entry>
-    <history-entry file="test_reporting - 2017.05.20 at 14h 25m 02s.xml">
+    <history-entry file="test_reporting - 2017.05.21 at 12h 12m 20s.xml">
       <configuration name="test_reporting" configurationId="tests" />
     </history-entry>
-    <history-entry file="test_reporting - 2017.05.20 at 14h 30m 52s.xml">
+    <history-entry file="test_reporting - 2017.05.21 at 12h 13m 18s.xml">
       <configuration name="test_reporting" configurationId="tests" />
     </history-entry>
-    <history-entry file="test_reporting - 2017.05.20 at 14h 31m 14s.xml">
+    <history-entry file="test_reporting - 2017.05.21 at 12h 15m 12s.xml">
       <configuration name="test_reporting" configurationId="tests" />
     </history-entry>
   </component>
@@ -1095,7 +1099,8 @@
     <MESSAGE value="sequential lookups of snps for a given sample working when table row is expanded" />
     <MESSAGE value="reworked snps lookup code due to suspected changes of page layouts on snpedia" />
     <MESSAGE value="more reworking on SNPS lookup" />
-    <option name="LAST_COMMIT_MESSAGE" value="more reworking on SNPS lookup" />
+    <MESSAGE value="implement support for reportlab since feature set is much richer" />
+    <option name="LAST_COMMIT_MESSAGE" value="implement support for reportlab since feature set is much richer" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1490,8 +1495,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/snps_proj/apps/snps/reporting/reporting2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="24" column="71" lean-forward="false" selection-start-line="24" selection-start-column="71" selection-end-line="24" selection-end-column="71" />
+        <state relative-caret-position="343">
+          <caret line="47" column="0" lean-forward="true" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
           <folding>
             <element signature="e#48#83#0" expanded="true" />
           </folding>
