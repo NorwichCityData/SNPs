@@ -53,7 +53,7 @@ def do_report():
     story.append(t)
     story.append(PageBreak())
 
-    # Do copy paragraph on second page
+    # Do copy paragraph on Vitamins and Antioxidants
     stitle = "Vitamins and Antioxidants"
     story.append(Paragraph(stitle, styles['red_subtitle']))
 
@@ -64,21 +64,45 @@ def do_report():
 
     story.append(Paragraph(para, styles['Normal']))
 
-    story.append(Spacer(width=0, height=1 * cm))
+    story.append(get_spacer())
 
     t = get_title_block()
+    story.append(t)
+    story.append(get_spacer())
 
+    # Do table for Vitamins and Antioxidants
+    data = [['Antioxidants', 'Gene', 'Variant Tested', 'Result', 'Recommended Action'],
+            ['Vitamin B2', 'MTHFR', 'rs1801133', 'CT', Paragraph(
+                'With your genotype, increase in homocysteine level will cause heart disease since the riboflavin level has very small effect on the homocysteine level. Healthy diet should be maintained. (1)',
+                style=styles['Normal'])],
+            ['Vitamin B6', 'NBPF3', 'rs4654748', 'CC', Paragraph(
+                'With your genotype, the vitamin B6 level is more likely lower in blood. Maintain healthy diet and eat vitamin B6 enriched foods. (2)',
+                style=styles['Normal']),
+             ],
+            ['...', '...', '...', '...']
+
+            ]
+    t = Table(data, colWidths=[3 * cm, 2 * cm, 3 * cm, 2 * cm, 7 * cm])
+    t.setStyle(
+        TableStyle([('BOX', (0, 0), (-1, -1), 0.25, colors.blue),
+                    ('BACKGROUND', (0, 0), (4, 0), colors.red),
+                    ('TEXTCOLOR', (0, 0), (4, 0), colors.white),
+                    ('TEXTCOLOR', (1, 1), (1, len(data) - 1), colors.blue),
+                    ('VALIGN', (0, 0), (4, len(data) - 1), 'MIDDLE'),
+                    ('INNERGRID', (0, 0), (-1, -1), 0.25, colors.black),
+                    ]),
+
+    )
     story.append(t)
 
     doc.build(story)
 
 
 def get_title_block():
-
     # do results title block
     data = [["", "Results"]]
 
-    t = Table(data, [2 * cm, 12 * cm], 1 * cm, hAlign='LEFT')
+    t = Table(data, [3 * cm, 13 * cm], 1 * cm, hAlign='LEFT')
     t.setStyle(
         TableStyle([
             ('BOX', (0, 0), (-1, -1), 0.25, colors.blue),
@@ -88,3 +112,7 @@ def get_title_block():
         ])
     )
     return t
+
+
+def get_spacer():
+    return Spacer(width=0, height=0.33 * cm)
